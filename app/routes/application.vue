@@ -26,17 +26,20 @@
             <p class="panel-heading">
               Adopt a puppeh!
             </p>
-            <div class="panel-block">
+            <div class="panel-block" v-for="puppy in puppies">
               <div class="media">
                 <div class="media-left">
                   <p class="image is-64x64">
-                    <img src="http://placehold.it/128x128">
+                    <img :src="puppy.image_url">
                   </p>
                 </div>
                 <div class="media-right">
-                  <h2>Puppeh name here</h2>
-                  <!-- <h3> <router-link :to=" { name: 'detail', params: { id: item.id } }"> -->
-              Read moar here </h3>
+                  <h2>{{ puppy.name }}</h2>
+                  <h3>
+                    <router-link :to=" { name: 'detail', params: { id: puppy.id } }">
+                      Read More.
+                    </router-link>
+                     </h3>
                 </div>
               </div>
             </div>
@@ -77,7 +80,7 @@ export default {
         fetch(this.apiUrl)
         .then ((res) => res.json() )
         .then ((puppyData) => {
-          this.puppy = puppyData
+          this.puppies = puppyData
         })
       }
 
