@@ -31,7 +31,8 @@ if (process.env.EMBER_ENV === 'production') {
 
 const stylePaths = [
   'app/styles',
-  'node_modules',
+  'node_modules/font-awesome',
+  'node_modules/bulma',
 ];
 const appNoSass = rm('app', '**/*.scss');
 

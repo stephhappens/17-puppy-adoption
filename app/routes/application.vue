@@ -1,18 +1,86 @@
 <template lang="html">
   <div class="">
 
+      <nav class="nav">
+        <div class="nav-left">
+          <router-link to="/" class="nav-item is-brand">
+            Puppehs
+          </router-link>
+        </div>
+
+        <div class="nav-center">
+          <router-link to="/" class="nav-item">
+            All Puppies
+          </router-link>
+          <router-link to="/new" class="nav-item">
+            Add Puppy
+          </router-link>
+        </div>
+      </nav>
+
+  <div class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-4">
+          <nav class="panel">
+            <p class="panel-heading">
+              Adopt a puppeh!
+            </p>
+            <div class="panel-block">
+              <div class="media">
+                <div class="media-left">
+                  <p class="image is-64x64">
+                    <img src="http://placehold.it/128x128">
+                  </p>
+                </div>
+                <div class="media-right">
+                  <h2>Puppeh name here</h2>
+                  <!-- <h3> <router-link :to=" { name: 'detail', params: { id: item.id } }"> -->
+              Read moar here </h3>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+        <div class="column is-8">
+          <router-view
+            v-bind:apiUrl= "apiUrl"
+            v-bind:puppies= "puppies"
+            >
+
+          </router-view>
+        </div>
+      </div>
+    </div>
   </div>
+
+
+</div>
 </template>
 
 <script>
+import Index from './index.vue';
 export default {
-  data() {
-    return {
-    };
-  },
+    data() {
+        return {
+          apiUrl: 'https://tiy-tn-class-api-fall-16.herokuapp.com/puppies/ryan',
+          puppies: [],
+        };
+    },
 
-  methods: {
+    mounted () {
+      this.getData()
+    },
 
-  },
+    methods: {
+      getData () {
+        fetch(this.apiUrl)
+        .then ((res) => res.json() )
+        .then ((puppyData) => {
+          this.puppy = puppyData
+        })
+      }
+
+    },
 };
 </script>
