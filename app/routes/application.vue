@@ -37,7 +37,7 @@
                   <h2>{{ puppy.name }}</h2>
                   <h3>
                     <router-link :to=" { name: 'detail', params: { id: puppy.id } }">
-                      Read More.
+                      Read more.
                     </router-link>
                      </h3>
                 </div>
