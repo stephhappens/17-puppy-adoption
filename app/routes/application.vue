@@ -49,6 +49,7 @@
           <router-view
             v-bind:apiUrl= "apiUrl"
             v-bind:puppies= "puppies"
+            @addPuppy="addPuppy"
             >
 
           </router-view>
@@ -66,7 +67,7 @@ import Index from './index.vue';
 export default {
     data() {
         return {
-          apiUrl: 'https://tiy-tn-class-api-fall-16.herokuapp.com/puppies/ryan',
+          apiUrl: 'https://tiy-tn-class-api-fall-16.herokuapp.com/puppies/stephanie',
           puppies: [],
         };
     },
@@ -81,6 +82,20 @@ export default {
         .then ((res) => res.json() )
         .then ((puppyData) => {
           this.puppies = puppyData
+        });
+      },
+
+      addPuppy(input) {
+        fetch(this.apiUrl, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(input),
+        })
+        .then((r) => r.json())
+        .then((addPuppy) => {
+          this.puppies = [...this.puppies, addPuppy];
+
+          this.$router.push({ name: 'index' });
         })
       }
 
