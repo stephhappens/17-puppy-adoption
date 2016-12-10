@@ -36,7 +36,7 @@
                 <div class="media-right">
                   <h2>{{ puppy.name }}</h2>
                   <h3>
-                    <router-link :to=" { name: 'detail', params: { id: puppy.id } }">
+                    <router-link :to=" { name: 'detail', params: { puppy_id: puppy.id } }">
                       Read more.
                     </router-link>
                      </h3>
@@ -50,6 +50,8 @@
             v-bind:apiUrl= "apiUrl"
             v-bind:puppies= "puppies"
             @addPuppy="addPuppy"
+            @updatePuppy="updatePuppy"
+            @deletePuppy="deletePuppy"
             >
 
           </router-view>
@@ -94,6 +96,42 @@ export default {
         .then((r) => r.json())
         .then((addPuppy) => {
           this.puppies = [...this.puppies, addPuppy];
+
+          this.$router.push({ name: 'index' });
+        })
+      },
+      updatePuppy(puppy, values) {
+        fetch(`${this.apiUrl}/${puppy.id}`, {
+          method: 'PUT',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(values),
+        })
+        .then((r) => r.json())
+        .then((addPuppy) => {
+          this.puppies = this.puppies.map((p) => {
+            if (p.id === addPuppy.id) {
+              return addPuppy
+
+            }
+            return p
+          })
+
+          this.$router.push({ name: 'index' });
+        })
+      },
+      deletePuppy(puppy) {
+        fetch(`${this.apiUrl}/${puppy.id}`, {
+          method: 'DELETE',
+          headers: {'Content-Type': 'application/json'},
+        })
+        .then(() => {
+          this.puppies = this.puppies.filter((p) => {
+            if (p.id === puppy.id) {
+              return false;
+
+            }
+            return true;
+          })
 
           this.$router.push({ name: 'index' });
         })

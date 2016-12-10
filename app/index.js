@@ -6,6 +6,7 @@ import VueRouter from 'vue-router';
 import App from './routes/application.vue';
 import Index from './routes/index.vue';
 import Create from './routes/new.vue';
+import Detail from './routes/detail.vue';
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,11 @@ const routes = [
     path: '/new',
     name: 'new',
     component: Create,
+  },
+  {
+    path: '/:puppy_id',
+    name: 'detail',
+    component: Detail,
   },
 ];
 

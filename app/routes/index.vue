@@ -23,7 +23,7 @@
           {{puppy.age}}
         </td>
         <td>
-          <router-link :to=" { name: 'detail', params: { id: puppy.id } }">
+          <router-link :to=" { name: 'detail', params: { puppy_id: puppy.id } }">
             Read more.
           </router-link>
         </td>
