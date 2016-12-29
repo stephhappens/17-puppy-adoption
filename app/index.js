@@ -7,6 +7,7 @@ import App from './routes/application.vue';
 import Index from './routes/index.vue';
 import Create from './routes/new.vue';
 import Detail from './routes/detail.vue';
+import Edit from './routes/edit.vue';
 
 Vue.use(VueRouter);
 
@@ -26,7 +27,14 @@ const routes = [
     name: 'detail',
     component: Detail,
   },
+
+  {
+    path: '/:puppy_id/edit',
+    name: 'edit',
+    component: Edit,
+  },
 ];
+
 
 const router = new VueRouter({
   mode: 'history',
