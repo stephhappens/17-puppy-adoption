@@ -4,7 +4,7 @@
       <nav class="nav">
         <div class="nav-left">
           <router-link to="/" class="nav-item is-brand">
-            Puppehs
+            Nashville Puppy Adoption
           </router-link>
         </div>
 
@@ -29,7 +29,7 @@
             <div class="panel-block" v-for="puppy in puppies">
               <div class="media">
                 <div class="media-left">
-                  <p class="image is-64x64">
+                  <p class="image is-96x96">
                     <img :src="puppy.image_url">
                   </p>
                 </div>

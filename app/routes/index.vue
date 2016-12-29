@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="">
-  <h2>Is this working?</h2>
+  <h2>Available Puppies</h2>
 
   <table class="table">
     <thead>
