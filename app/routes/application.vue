@@ -23,8 +23,8 @@
       <div class="columns">
         <div class="column is-4">
           <nav class="panel">
-            <p class="panel-heading">
-              Adopt a puppeh!
+            <p class="panel-heading title is-5">
+              Adopt a puppy!
             </p>
             <div class="panel-block" v-for="puppy in puppies">
               <div class="media">

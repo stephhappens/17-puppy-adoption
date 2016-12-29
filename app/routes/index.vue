@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="">
-  <h2>Available Puppies</h2>
+  <p class="title is-2">Available Puppies</p>
 
   <table class="table">
     <thead>
