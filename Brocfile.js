@@ -1,5 +1,5 @@
 'use strict';
-/* eslint-env node */
+// eslint-env node;
 
 require('dotenv').config();
 const Merge = require('broccoli-merge-trees');
@@ -13,14 +13,14 @@ const mv = require('broccoli-stew').mv;
 const rm = require('broccoli-stew').rm;
 const browserify = require('broccoli-watchify');
 const envify = require('envify');
-// const vueify = require('vueify');
+const vueify = require('vueify');
 
 
 // Edit this function to add browserify transforms,
 // external files, bundles, and more
 function browserifyInit(b) {
   b.transform(envify);
-  // b.transform(vueify);
+  b.transform(vueify);
 }
 
 let pubFiles = new LiveReload('public');
@@ -31,7 +31,8 @@ if (process.env.EMBER_ENV === 'production') {
 
 const stylePaths = [
   'app/styles',
-  'node_modules',
+  'node_modules/font-awesome',
+  'node_modules/bulma',
 ];
 const appNoSass = rm('app', '**/*.scss');
 
@@ -40,7 +41,7 @@ const babelScript = new Babel(appNoSass);
 const appScript = browserify(babelScript, {
   browserify: {
     entries: ['./index'],
-    debug: true
+    debug: true,
   },
   outputFile: 'app.js',
 
@@ -60,7 +61,7 @@ if (process.env.EMBER_ENV === 'test') {
   const testJs = browserify(testTree, {
     browserify: {
       entries: ['./tests/index-test'],
-      debug: true
+      debug: true,
     },
     outputFile: 'tests.js',
 
